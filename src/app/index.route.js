@@ -3,7 +3,8 @@
 
   angular
     .module('thatOneThing')
-    .config(routeConfig,{
+    .config(routeConfig)
+    .constant('CONFIG', {
       Firebase:{
         baseUrl:'https://reditclone.firebaseio.com/'
       }
@@ -17,6 +18,12 @@
         templateUrl: 'app/main/main.html',
         controller: 'MainController',
         controllerAs: 'main'
+      })
+      .state('profile',{
+        url:'/profile/:id',
+        templateUrl:'app/profile/profile.html',
+        controller:'ProfileController',
+        controllerAs:'profile'
       })
       .state('standings', {
         url:'/standings',

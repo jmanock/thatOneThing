@@ -5,6 +5,6 @@
   .controller('StandingsController', StandingsController);
 
   function StandingsController(){
-    console.log('hello?');
+    
   }
 })();
