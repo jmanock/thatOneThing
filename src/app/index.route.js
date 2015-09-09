@@ -4,11 +4,7 @@
   angular
     .module('thatOneThing')
     .config(routeConfig)
-    .constant('CONFIG', {
-      Firebase:{
-        baseUrl:'https://reditclone.firebaseio.com/'
-      }
-    });
+    .constant('FirebaseUrl','https://reditclone.firebaseio.com');
 
   /** @ngInject */
   function routeConfig($stateProvider, $urlRouterProvider) {
