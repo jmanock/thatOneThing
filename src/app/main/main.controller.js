@@ -6,10 +6,24 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($timeout, webDevTec, toastr, $firebaseObject, FirebaseUrl) {
+  function MainController(toastr, FirebaseUrl, $scope) {
     var vm = this;
-    var ref = new Firebase(FirebaseUrl+'/leaderboard');
-    vm.data = $firebaseObject(ref);
+    vm.login = login;
+
+    function login(){
+
+      var ref = new Firebase(FirebaseUrl);
+      ref.authWithOAuthPopup('facebook', function(error, authData){
+        if(!error){
+          $scope.something = 'Ok should this work???';
+          // console.log(authData.facebook.displayName);
+          toastr.info('Something went wrong but its right');
+        }else{
+
+        }
+      });
+    }
+
     vm.awesomeThings = [];
     vm.classAnimation = '';
     vm.creationDate = 1441820769124;
@@ -18,10 +32,8 @@
     activate();
 
     function activate() {
-      getWebDevTec();
-      $timeout(function() {
-        vm.classAnimation = 'rubberBand';
-      }, 4000);
+
+
     }
 
     function showToastr() {
@@ -29,12 +41,5 @@
       vm.classAnimation = '';
     }
 
-    function getWebDevTec() {
-      vm.awesomeThings = webDevTec.getTec();
-
-      angular.forEach(vm.awesomeThings, function(awesomeThing) {
-        awesomeThing.rank = Math.random();
-      });
-    }
   }
 })();
