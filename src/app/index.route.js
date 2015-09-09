@@ -19,7 +19,7 @@
         controllerAs: 'main'
       })
       .state('standings', {
-        url:'/standings/',
+        url:'/standings',
         templateUrl:'app/standings/standings.html',
         controller:'StandingsController',
         controllerAs:'standings'
