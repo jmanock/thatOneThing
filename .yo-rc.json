@@ -22,7 +22,7 @@
         }
       ],
       "jQuery": {
-        "key": "jquery2"
+        "key": "jquery1"
       },
       "resource": {
         "key": "none",
@@ -37,7 +37,7 @@
         "module": null
       },
       "bootstrapComponents": {
-        "key": "official",
+        "key": "none",
         "module": null
       },
       "cssPreprocessor": {

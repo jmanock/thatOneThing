@@ -6,6 +6,7 @@
     .module('thatOneThing')
     .constant('malarkey', malarkey)
     .constant('toastr', toastr)
-    .constant('moment', moment);
+    .constant('moment', moment)
+    .constant('FirebaseUrl', 'https://reditclone.firebaseio.com');
 
 })();
