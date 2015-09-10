@@ -7,6 +7,6 @@
     .constant('malarkey', malarkey)
     .constant('toastr', toastr)
     .constant('moment', moment)
-    .constant('FirebaseUrl', 'https://reditclone.firebaseio.com');
+    .constant('FirebaseUrl', 'https://reditclone.firebaseio.com/');
 
 })();

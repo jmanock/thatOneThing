@@ -1,22 +1,12 @@
-<!-- <div>
-  <p ng-show=main.user></p>
-  <div ng-hide='main.user'>
+ <div>
+
+  <div ng-hide='main.message'>
     <p>Login, to Play Fantasy Golf </p>
     <button ng-click='main.login()' class='btn-primary'>Login with Facebook</button>
   </div>
 
-  <div ng-show='main.user'>
-    <p>Welcome back, {{main.user.facebook.displayName}}</p>
-
+  <div ng-show='main.message'>
+    <p>Welcome back, {{user}}</p>
+    <button ng-click='main.login()'>Should show something else</button>
   </div>
-</div> -->
-
-<div>
-  <p ng-hide='false'>Click to log in</p>
-  <button ng-click='main.login()' ng-show='true'>Login</button>
-  <div ng-show='true'>
-    <p>{{main.authData.facebook.displayName}}</p>
-  </div>
-
-
 </div>

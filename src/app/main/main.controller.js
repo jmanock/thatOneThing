@@ -6,18 +6,28 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController(toastr, FirebaseUrl, $scope) {
+  function MainController(toastr, FirebaseUrl, $scope, $firebaseObject) {
     var vm = this;
     vm.login = login;
 
     function login(){
-
+      vm.message = !vm.message;
       var ref = new Firebase(FirebaseUrl);
       ref.authWithOAuthPopup('facebook', function(error, authData){
         if(!error){
-          $scope.something = 'Ok should this work???';
-          // console.log(authData.facebook.displayName);
           toastr.info('Something went wrong but its right');
+          var user = ref.child('users').child(authData.uid);
+          user.update({
+            uid:authData.uid,
+            facebook:authData.facebook,
+            fullName:authData.facebook.displayName
+          });
+
+          // console.log(user);
+          return user;
+           //console.log(authData.facebook);
+
+
         }else{
 
         }
