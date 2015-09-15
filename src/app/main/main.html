@@ -10,7 +10,7 @@
     <button ng-click='main.login()'>Should show something else</button>
   </div> -->
 
-  <button ng-click='login("facebook")'>Log me in please</button>
+  <button ng-if='!authData.facebook' ng-click='login("facebook")'>Log me in please</button>
   <div ng-if='authData.facebook'>
     <img ng-src="{{authData.facebook.profileImageURL}}" alt="">
     <h2>{{authData.facebook.displayName}}</h2>
