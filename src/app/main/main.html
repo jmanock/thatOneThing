@@ -1,18 +1,17 @@
  <div>
 
-  <!-- <div ng-hide='main.message'>
-    <p>Login, to Play Fantasy Golf </p>
-    <button ng-click='main.login()' class='btn-primary'>Login with Facebook</button>
-  </div>
-
-  <div ng-show='main.message'>
-    <p>Welcome back, {{user.facebook.fullName}}</p>
-    <button ng-click='main.login()'>Should show something else</button>
-  </div> -->
-
-  <button ng-if='!authData.facebook' ng-click='login("facebook")'>Log me in please</button>
+   <!-- <button ng-if='!authData.facebook' ng-click='main.login()'>Log me in please</button>
   <div ng-if='authData.facebook'>
     <img ng-src="{{authData.facebook.profileImageURL}}" alt="">
     <h2>{{authData.facebook.displayName}}</h2>
+  </div> -->
+  <p ng-show='main.user'></p>
+  <div ng-if='!main.user'>
+    <p>Login, to play Fantasy Golf</p>
+    <button ng-click='main.login()' class='btn-primary'>Login with Facebook</button>
+  </div>
+
+  <div ng-if='main.user'>
+    <p>Welcome back, {{main.user}}</p>
   </div>
 </div>
