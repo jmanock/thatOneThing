@@ -2,21 +2,18 @@
   'use strict';
   angular
   .module('thatOneThing')
+  .factory('user', user)
   .controller('ProfileController', ProfileController);
 
-  function ProfileController($http, $stateParams, $firebaseArray, FirebaseUrl){
+  function user(FirebaseUrl, $stateParams, $firebaseArray, Auth){
+    var self = this;
+    this.currentUser = $firebaseArray(FirebaseUrl.child('users').child($stateParams.id));
+    Auth.$onAuth(function(user){
+      self.user = user;
+    });
+  }
+  function ProfileController($http, Auth, $stateParams, FirebaseUrl, $firebaseArray){
     var vm = this;
-    /* TODO:
-      ~ Set up current user
-        * pass in the user data
-        * add buttons
-        * remove buttons
-        * split into a b c players
-        * set up rules
-        * split views for all players list
-        * show team
-    */
-
 
     $http.get('app/json/field.json').success(function(data){
       var players = [];
@@ -59,7 +56,7 @@
       });
     });
 
-    
+
     vm.profile = 1;
     vm.setTab = function(tabId){
       vm.profile = tabId;
@@ -67,5 +64,13 @@
     vm.isSet = function(tabId){
       return vm.profile === tabId;
     };
+
+    this.curretnUser.$loaded(function(){
+
+    });
+    vm.aPlayerAdd = aPlayerAdd;
+    function aPlayerAdd(id){
+      //console.log(id);
+    }
   }
 })();
