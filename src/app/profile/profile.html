@@ -8,18 +8,18 @@
     </ul>
   </div>
 
-  <div>
+  <div class='players'>
     <ul>
       <div ng-show='profile.isSet(1)'>
-        <li ng-repeat='p in profile.aPlayers'>{{p}} <button ng-click='profile.aPlayerAdd(p)'>Add Player</button></li>
+        <li ng-repeat='p in profile.aPlayers | orderBy:-p'>{{p}} <button ng-click='profile.aPlayerAdd(p)' class='btn pull-right'>Add Player</button></li>
       </div>
 
       <div ng-show='profile.isSet(2)'>
-        <li ng-repeat='p in profile.bPlayers'>{{p}} <button ng-click='profile.bPlayerAdd(p)'>Add Player</button></li>
+        <li ng-repeat='p in profile.bPlayers | orderBy:-p'>{{p}} <button ng-click='profile.bPlayerAdd(p)' class='btn pull-right'>Add Player</button></li>
       </div>
 
       <div ng-show='profile.isSet(3)'>
-        <li ng-repeat='p in profile.cPlayers'>{{p}} <button ng-click='profile.cPlayerAdd(p)'>Add Player</button></li>
+        <li ng-repeat='p in profile.cPlayers | orderBy:-p'>{{p}} <button ng-click='profile.cPlayerAdd(p)' class='btn pull-right'>Add Player</button></li>
       </div>
     </ul>
   </div>
