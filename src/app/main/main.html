@@ -5,13 +5,12 @@
     <img ng-src="{{authData.facebook.profileImageURL}}" alt="">
     <h2>{{authData.facebook.displayName}}</h2>
   </div> -->
-  <p ng-show='main.user'></p>
-  <div ng-if='!main.user'>
-    <p>Login, to play Fantasy Golf</p>
-    <button ng-click='main.login()' class='btn-primary'>Login with Facebook</button>
+
+  <div>
+  <button ng-click='main.login()' class='btn-primary'>Login with Fbook</button>
   </div>
 
-  <div ng-if='main.user'>
+  <div>
     <img ng-src="{{main.user.facebook.profileImageURL}}" alt="">
     <p>Welcome back, {{main.user.fullName}}</p>
   </div>

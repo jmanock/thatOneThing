@@ -24,7 +24,6 @@
         fullName:authData.facebook.displayName
       });
       user = $firebaseObject(fbUrl.child('users').child(authData.uid));
-
       return user;
     }
     return{
@@ -34,6 +33,7 @@
         });
       },
       login:function(){
+
         return auth.$authWithOAuthPopup('facebook');
       }
     };
@@ -41,6 +41,7 @@
 
   function MainController(toastr, Auth) {
     var vm = this;
+    // This should not do anything till i hit the fucking button.
     vm.login = Auth.login;
     Auth.onAuth(function(user){
       vm.user = user;
