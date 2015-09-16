@@ -6,11 +6,20 @@
 
   function ProfileController($http, $stateParams, $firebaseArray, FirebaseUrl){
     var vm = this;
-    // vm.currentUser = $firebaseArray(FirebaseUrl.child('user').child($stateParams.id));
-    // console.log(vm.currentUser);
+    /* TODO:
+      ~ Set up current user
+        * pass in the user data
+        * add buttons
+        * remove buttons
+        * split into a b c players
+        * set up rules
+        * split views for all players list
+        * show team
+    */
+
 
     var players = [];
-    $http.get('app/field.json').success(function(data){
+    $http.get('app/json/field.json').success(function(data){
       var tPlayers = data.Tournament.Players;
       tPlayers.forEach(function(x){
         var names = x.PlayerName;
