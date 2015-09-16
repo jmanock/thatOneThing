@@ -1,4 +1,26 @@
-<h3>Players</h3>
-<ul ng-repeat='f in profile.field'>
-  <li>{{f.Name}}</li>
-</ul>
+<div>
+
+  <div>
+    <ul class='nav nav-pills'>
+      <li ng-class='{active:profile.isSet(1)}'><a ng-click='profile.setTab(1)'>A Players</a></li>
+      <li ng-class='{active:profile.isSet(2)}'><a ng-click='profile.setTab(2)'>B Players</a></li>
+      <li ng-class='{active:profile.isSet(3)}'><a ng-click='profile.setTab(3)'>C Players</a></li>
+    </ul>
+  </div>
+
+  <div>
+    <ul>
+      <div ng-show='profile.isSet(1)'>
+        <li ng-repeat='p in profile.aPlayers'>{{p}} <button ng-click='profile.aPlayerAdd(p)'>Add Player</button></li>
+      </div>
+
+      <div ng-show='profile.isSet(2)'>
+        <li ng-repeat='p in profile.bPlayers'>{{p}} <button ng-click='profile.bPlayerAdd(p)'>Add Player</button></li>
+      </div>
+
+      <div ng-show='profile.isSet(3)'>
+        <li ng-repeat='p in profile.cPlayers'>{{p}} <button ng-click='profile.cPlayerAdd(p)'>Add Player</button></li>
+      </div>
+    </ul>
+  </div>
+</div>
