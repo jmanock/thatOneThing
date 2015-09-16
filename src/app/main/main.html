@@ -6,12 +6,21 @@
     <h2>{{authData.facebook.displayName}}</h2>
   </div> -->
 
-  <div>
+  <!-- <div ng-if='main.authData'>
   <button ng-click='main.login()' class='btn-primary'>Login with Fbook</button>
   </div>
 
-  <div>
+  <div ng-if='!main.authData'>
     <img ng-src="{{main.user.facebook.profileImageURL}}" alt="">
     <p>Welcome back, {{main.user.fullName}}</p>
+  </div> -->
+
+  <div ng-hide='main.authData'>
+    <button ng-click='main.login()'>Login with mother fucking FRIENDFACE</button>
+  </div>
+  <div ng-show='main.authData'>
+    <img ng-src="{{main.authData.facebook.profileImageURL}}" alt="">
+    <p>Welcome fuck head,{{main.authData.displayName}}</p>
+    <button ng-click='main.logout()'>Log my ass out</button>
   </div>
 </div>
