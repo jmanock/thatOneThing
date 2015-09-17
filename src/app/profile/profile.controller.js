@@ -2,19 +2,17 @@
   'use strict';
   angular
   .module('thatOneThing')
-  .factory('user', user)
   .controller('ProfileController', ProfileController);
 
-  function user(FirebaseUrl, $stateParams, $firebaseArray, Auth){
-    var self = this;
-    this.currentUser = $firebaseArray(FirebaseUrl.child('users').child($stateParams.id));
-    Auth.$onAuth(function(user){
-      self.user = user;
-    });
-  }
-  function ProfileController($http, Auth, $stateParams, FirebaseUrl, $firebaseArray){
-    var vm = this;
 
+  function ProfileController($http, Auth, $stateParams, FirebaseUrl, $firebaseObject){
+    var vm = this;
+    var ref = new Firebase(FirebaseUrl);
+    init();
+    function init(){
+      console.log($stateParams.id);
+      console.log($firebaseObject(ref.child('users').child($stateParams.id)));
+    }
     $http.get('app/json/field.json').success(function(data){
       var players = [];
       var tPlayers = data.Tournament.Players;
@@ -65,9 +63,6 @@
       return vm.profile === tabId;
     };
 
-    this.curretnUser.$loaded(function(){
-
-    });
     vm.aPlayerAdd = aPlayerAdd;
     function aPlayerAdd(id){
       //console.log(id);
