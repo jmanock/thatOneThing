@@ -66,7 +66,10 @@
       add(id,'A');
     }
     function add(p,x){
-      console.log(p,x);
+      var userTeam = ref.child('userTeam').child(name).child('Team').child(p);
+      userTeam.update({
+        Rank:x
+      });
     }
   }
 })();
