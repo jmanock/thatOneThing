@@ -1,14 +1,13 @@
- <div>
+<div class="container">
   <div ng-hide='main.authData'>
     <button ng-click='main.login()' class='btn-primary'>Login with Facebook</button>
-    <button ng-click='main.standings()' ui-sref='standings' class='btn-danger'>Go make your pics</button>
+    <button ng-click='main.standings()' ui-sref='standings' class='btn-danger'>Go to Standings</button>
   </div>
 
   <div ng-show='main.authData'>
     <img ng-src="{{main.authData.facebook.profileImageURL}}" alt="">
-    <p>Welcome, <strong>{{main.authData.facebook.displayName}}</strong></p>
-    <button ng-click='main.profile()' ui-sref='profile({id:main.authData.uid})' class='btn-primary'>Make your pics now</button>
-    <button ng-click='main.logout()' class='btn-danger'>Log Out</button>
+    <p>Welcome back, <strong>{{main.authData.facebook.displayName}}</strong></p>
+    <button ng-click='main.profile()' ui-sref='profile({id:main.authData.uid})' class='btn-primary'>Make your pics Now</button>
+    <button ng-click='main.logout()' class='btn-ganger'>Log out</button>
   </div>
-
 </div>
