@@ -8,10 +8,13 @@
   function ProfileController($http, Auth, $stateParams, FirebaseUrl, $firebaseObject){
     var vm = this;
     var ref = new Firebase(FirebaseUrl);
+    var name;
     init();
     function init(){
-      console.log($stateParams.id);
-      console.log($firebaseObject(ref.child('users').child($stateParams.id)));
+      var user = $firebaseObject(ref.child('users').child($stateParams.id));
+      user.$loaded().then(function(){
+        name = user.fullName;
+      });
     }
     $http.get('app/json/field.json').success(function(data){
       var players = [];
@@ -58,7 +61,12 @@
 
     vm.aPlayerAdd = aPlayerAdd;
     function aPlayerAdd(id){
-      //console.log(id);
+      var index = vm.aPlayers.indexOf(id);
+      vm.aPlayers.splice(index, 1);
+      add(id,'A');
+    }
+    function add(p,x){
+      console.log(p,x);
     }
   }
 })();
