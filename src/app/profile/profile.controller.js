@@ -65,7 +65,7 @@
       vm.aPlayers.splice(index,1);
       add(p,'A');
     }
-    
+
     vm.bPlayerAdd = bPlayerAdd;
     function bPlayerAdd(p){
       var index = vm.bPlayers.indexOf(p);
@@ -83,7 +83,7 @@
     function add(p,x){
       var userTeam = ref.child('userTeam').child(name).child('Team').child(p);
       var count = function(c){
-        FirebaseUrl.child('userTeam').child(name).child('Count'+x).transaction(function(count){
+        ref.child('userTeam').child(name).child('Count'+x).transaction(function(count){
           if(count === null){
             count = 0;
           }
