@@ -10,8 +10,8 @@
     var ref = new Firebase(FirebaseUrl);
     init();
     function init(){
-      //console.log($stateParams.id);
-      //console.log($firebaseObject(ref.child('users').child($stateParams.id)));
+      console.log($stateParams.id);
+      console.log($firebaseObject(ref.child('users').child($stateParams.id)));
     }
     $http.get('app/json/field.json').success(function(data){
       var players = [];
@@ -38,9 +38,9 @@
             }
           });
         });
-        var aPlayers = Rankings.splice(0,9);
+        var aPlayers = Rankings.splice(0,10);
         vm.aPlayers = aPlayers;
-        var bPlayers = Rankings.splice(10,19);
+        var bPlayers = Rankings.splice(10,20);
         vm.bPlayers = bPlayers;
         var cPlayers = Rankings;
         vm.cPlayers = cPlayers;
