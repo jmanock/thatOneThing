@@ -1,0 +1,13 @@
+ <div>
+  <div ng-hide='main.authData'>
+    <button ng-click='main.login()' class='btn-primary'>Login with mother fucking FRIENDFACE</button>
+    <button ng-click='main.standings()' ui-sref='standings' class='btn-danger'>Go to the fucking standings</button>
+  </div>
+
+  <div ng-show='main.authData'>
+    <img ng-src="{{main.authData.facebook.profileImageURL}}" alt="">
+    <p>Welcome fuck head, <strong>{{main.authData.facebook.displayName}}</strong></p>
+    <button ng-click='main.profile()' ui-sref='profile({id:main.authData.uid})' class='btn-primary'>Profile??</button>
+    <button ng-click='main.logout()' class='btn-danger'>Log my ass out</button>
+  </div>
+</div>

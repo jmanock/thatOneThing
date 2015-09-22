@@ -1,0 +1,29 @@
+<div>
+  <div class='team'>
+    <p ng-repeat='t in profile.team'>{{t}} <button ng-click='profile.remove(t)'>X</button></p>  
+  </div>
+
+  <div>
+    <ul class='nav nav-pills'>
+      <li ng-class='{active:profile.isSet(1)}'><a ng-click='profile.setTab(1)'>A Players</a></li>
+      <li ng-class='{active:profile.isSet(2)}'><a ng-click='profile.setTab(2)'>B Players</a></li>
+      <li ng-class='{active:profile.isSet(3)}'><a ng-click='profile.setTab(3)'>C Players</a></li>
+    </ul>
+  </div>
+
+  <div class='players'>
+    <ul>
+      <div ng-show='profile.isSet(1)'>
+        <li ng-repeat='p in profile.aPlayers | orderBy:-p'>{{p}} <button ng-click='profile.aPlayerAdd(p)' class='btn pull-right'>Add Player</button></li>
+      </div>
+
+      <div ng-show='profile.isSet(2)'>
+        <li ng-repeat='p in profile.bPlayers | orderBy:-p'>{{p}} <button ng-click='profile.bPlayerAdd(p)' class='btn pull-right'>Add Player</button></li>
+      </div>
+
+      <div ng-show='profile.isSet(3)'>
+        <li ng-repeat='p in profile.cPlayers | orderBy:-p'>{{p}} <button ng-click='profile.cPlayerAdd(p)' class='btn pull-right'>Add Player</button></li>
+      </div>
+    </ul>
+  </div>
+</div>
