@@ -4,7 +4,7 @@
   .module('thatOneThing')
   .controller('ProfileController', ProfileController);
 
-  function ProfileController($http, Auth, $stateParams, FirebaseUrl, $firebaseObject){
+  function ProfileController($http, Auth, $stateParams, FirebaseUrl, $firebaseObject, $firebaseArray){
     var vm = this;
     var ref = new Firebase(FirebaseUrl);
     var name;
@@ -14,8 +14,43 @@
       var user = $firebaseObject(ref.child('users').child($stateParams.id));
       user.$loaded().then(function(){
         name = user.fullName;
+        var team = $firebaseArray(ref.child('userTeam').child(name).child('Team'));
+        team.$loaded().then(function(data){
+          angular.forEach(data, function(x){
+            var index;
+            if(x.Rank === 'A'){
+              index = vm.aPlayers.indexOf(x.$id);
+              vm.aPlayers.splice(index,1);
+            }else if(x.Rank === 'B'){
+              index = vm.bPlayers.indexOf(x.$id);
+              vm.bPlayers.splice(index,1);
+            }else if(x.Rank === 'C'){
+              index = vm.cPlayers.indexOf(x.$id);
+              vm.cPlayers.splice(index,1);
+            }
+          });
+          vm.team = team;
+        });
       });
+
+      // team.$loaded().then(function(data){
+      //   angular.forEach(data, function(x){
+      //     var index;
+      //     if(x.Rank === 'A'){
+      //       index = vm.aPlayers.indexOf(x.$id);
+      //       vm.aPlayers.splice(index,1);
+      //     }else if(x.Rank === 'B'){
+      //       index = vm.bPlayers.indexOf(x.$id);
+      //       vm.bPlayers.splice(index,1);
+      //     }else if(x.Rank === 'C'){
+      //       index = vm.cPlayers.indexOf(x.$id);
+      //       vm.cPlayers.splice(index,1);
+      //     }
+      //   });
+      // });
+
     }
+
 
     $http.get('app/json/field.json').success(function(data){
       var players = [];

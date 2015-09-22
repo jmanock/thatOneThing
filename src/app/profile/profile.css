@@ -1,5 +1,5 @@
 .players{
-  float:left;
+  
   width:30em;
   border:1px solid orange;
 }
@@ -23,7 +23,9 @@ p{
 }
 
 .team{
-  margin-right:40em;
+  width:20em;
+  border:1px solid red;
+  margin-left:50em;
 }
 
 a{
