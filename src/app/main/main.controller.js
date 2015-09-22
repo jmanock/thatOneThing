@@ -7,11 +7,11 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function Auth(FirebaseUrl, $firebaseAuth){
-    var auth = new Firebase(FirebaseUrl);
-    return $firebaseAuth(auth);
-  }
-  function MainController(toastr, Auth, FirebaseUrl) {
+   function Auth(FirebaseUrl, $firebaseAuth){
+     var auth = new Firebase(FirebaseUrl);
+     return $firebaseAuth(auth);
+   }
+  function MainController( Auth, FirebaseUrl) {
     var vm = this;
     var ref = new Firebase(FirebaseUrl);
     vm.login = login;
@@ -28,7 +28,7 @@
           fullName:authData.facebook.displayName
         });
       }).catch(function(error){
-        toastr.info(error);
+        console.log(error);
       });
     }
     function logout(){

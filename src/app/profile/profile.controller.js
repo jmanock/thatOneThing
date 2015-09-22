@@ -65,11 +65,50 @@
       vm.aPlayers.splice(index, 1);
       add(id,'A');
     }
+
+    vm.bPlayerAdd = bPlayerAdd;
+    function bPlayerAdd(id){
+      var index = vm.bPlayers.indexOf(id);
+      vm.bPlayers.splice(index,1);
+      add(id,'B');
+    }
+
+    vm.cPlayerAdd = cPlayerAdd;
+    function cPlayerAdd(id){
+      var index = vm.cPlayers.indexOf(id);
+      vm.cPlayers.splice(index,1);
+      add(id,'C');
+    }
+
     function add(p,x){
       var userTeam = ref.child('userTeam').child(name).child('Team').child(p);
-      userTeam.update({
-        Rank:x
-      });
+      var count = function(c){
+        ref.child('userTeam').child(name).child(x'count').transaction(function(count){
+          if(count === null){
+            count = 0;
+          }
+          if(count >= c){
+            console.log('That is all the '+x+' Players you can have');
+          }else{
+            return(count ||0)+1;
+          }
+        },function(err, committed){
+          if(err){
+            console.log(err);
+          }else if(committed){
+            userTeam.update({
+              Rank:x
+            });
+          }
+        });
+      };
+      if(x === 'A'){
+        count(2);
+      }else if(x === 'B'){
+        count(2);
+      }else if(x === 'C'){
+        count(1);
+      }
     }
   }
 })();
