@@ -10,50 +10,43 @@
     var ref = new Firebase(FirebaseUrl);
     init();
     function init(){
-      console.log($stateParams.id);
-      console.log($firebaseObject(ref.child('users').child($stateParams.id)));
+      //console.log($stateParams.id);
+      //console.log($firebaseObject(ref.child('users').child($stateParams.id)));
     }
     $http.get('app/json/field.json').success(function(data){
       var players = [];
-      var tPlayers = data.Tournament.Players;
-      tPlayers.forEach(function(x){
-        var names = x.PlayerName;
-        var parts = names.split(', ');
-        var fieldNames = parts[1]+' '+parts[0];
+      var TournamentPlayers = data.Tournament.Players;
+      TournamentPlayers.forEach(function(a){
+        var part = a.PlayerName.split(', ');
+        var PlayerName = part[1]+' '+part[0];
         players.push({
-          Name:fieldNames
+          Name:PlayerName
         });
-
       });
-      $http.get('app/json/fedexPoints.json').success(function(data){
-        var fedexCup = [];
+
+      $http.get('app/json/fecpoints.json').success(function(data){
+        var Rankings = [];
         var standings = data.standings;
-        standings.forEach(function(x){
-          var firstName = x.firstName;
-          var lastName = x.lastName;
-          var fullName = firstName +' '+lastName;
-          fedexCup.push({
-            Name:fullName
+        standings.forEach(function(b){
+          var firstName = b.firstName;
+          var lastName = b.lastName;
+          var fullName = firstName +' '+ lastName;
+          players.forEach(function(c){
+            var pName = c.Name;
+            if(pName === fullName){
+              Rankings.push(fullName);
+            }
           });
         });
-        var rankings = [];
-        for(var i = 0; i<fedexCup.length; i++){
-          for(var x = 0; x<players.length; x++){
-            if(fedexCup[i].Name === players[x].Name){
-              rankings.push(fedexCup[i].Name);
-            }
-          }
-        }
-
-        var aPlayers = rankings.splice(0,19);
+        var aPlayers = Rankings.splice(0,9);
         vm.aPlayers = aPlayers;
-        var bPlayers = rankings.splice(20,45);
+        var bPlayers = Rankings.splice(10,19);
         vm.bPlayers = bPlayers;
-        var cPlayers = rankings;
+        var cPlayers = Rankings;
         vm.cPlayers = cPlayers;
       });
-    });
 
+    });
 
     vm.profile = 1;
     vm.setTab = function(tabId){
