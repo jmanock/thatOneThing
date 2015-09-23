@@ -11,14 +11,18 @@
     var auth = new Firebase(FirebaseUrl);
     return $firebaseAuth(auth);
   }
-  function MainController(toastr, Auth, FirebaseUrl) {
+
+  function MainController(Auth, FirebaseUrl, toastr) {
     var vm = this;
+
     var ref = new Firebase(FirebaseUrl);
     vm.login = login;
     vm.logout = logout;
+
     Auth.$onAuth(function(authData){
       vm.authData = authData;
     });
+
     function login(){
       Auth.$authWithOAuthPopup('facebook').then(function(authData){
         var user = ref.child('users').child(authData.uid);
@@ -28,7 +32,7 @@
           fullName:authData.facebook.displayName
         });
       }).catch(function(error){
-        toastr.info(error);
+        toastr.inof(error);
       });
     }
     function logout(){

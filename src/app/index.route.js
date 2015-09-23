@@ -22,7 +22,7 @@
       })
       .state('standings',{
         url:'/standings',
-        templateUrl:'app/standings/standings.html',
+        templateUrl:'app/standings/html',
         controller:'StandingsController',
         controllerAs:'standings'
       });

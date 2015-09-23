@@ -1,29 +1,36 @@
-.players{
-  float:left
+.team{
+  border:1px orange solid;
+  width:20em;
+  position:absolute;
+  right:0;
+  margin-right:2em;
+  position:fixed;
 }
 
-.random{
-  float:right;
+.players{
+  border:1px solid red;
+  width:20em;
+  font-size:1.3em;
+  line-height:2.5em;
 }
 
 .btn{
   margin-left:1em;
-}
-
-li{
-  list-style-type:none;
-  margin-bottom:10px;
-  line-height:2.5em;
+  color:gray;
+  background-color:orange;
+  margin-top:0.3em;
 }
 
 p{
-  line-height:2.5em;
+  font-size:1.5em;
+  line-height:2.0em;
 }
-
-.team{
-  margin-right:40em;
+.remove{
+  margin-bottom:.3em;
 }
-
 a{
   cursor:pointer;
+}
+li{
+  list-style-type:none;
 }
