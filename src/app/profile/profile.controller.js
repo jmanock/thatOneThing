@@ -32,23 +32,6 @@
           vm.team = team;
         });
       });
-
-      // team.$loaded().then(function(data){
-      //   angular.forEach(data, function(x){
-      //     var index;
-      //     if(x.Rank === 'A'){
-      //       index = vm.aPlayers.indexOf(x.$id);
-      //       vm.aPlayers.splice(index,1);
-      //     }else if(x.Rank === 'B'){
-      //       index = vm.bPlayers.indexOf(x.$id);
-      //       vm.bPlayers.splice(index,1);
-      //     }else if(x.Rank === 'C'){
-      //       index = vm.cPlayers.indexOf(x.$id);
-      //       vm.cPlayers.splice(index,1);
-      //     }
-      //   });
-      // });
-
     }
 
 
@@ -96,22 +79,16 @@
 
     vm.aPlayerAdd = aPlayerAdd;
     function aPlayerAdd(p){
-      var index = vm.aPlayers.indexOf(p);
-      vm.aPlayers.splice(index,1);
       add(p,'A');
     }
 
     vm.bPlayerAdd = bPlayerAdd;
     function bPlayerAdd(p){
-      var index = vm.bPlayers.indexOf(p);
-      vm.bPlayers.splice(index,1);
       add(p,'B');
     }
 
     vm.cPlayerAdd = cPlayerAdd;
     function cPlayerAdd(p){
-      var index = vm.cPlayers.indexOf(p);
-      vm.cPlayers.splice(index,1);
       add(p,'C');
     }
 
@@ -143,6 +120,33 @@
         count(2);
       }else if(x === 'C'){
         count(1);
+      }
+    }
+
+    vm.remove = remove;
+    function remove(t){
+      var userTeam = ref.child('userTeam').child(name).child('Team').child(t.$id);
+      var count = function(){
+        ref.child('userTeam').child(name).child('Count'+t.Rank).transaction(function(id){
+          return(id || 0)-1;
+        }, function(err, committed){
+          if(err){
+            console.log(err);
+          }else if(committed){
+
+            userTeam.remove();
+          }
+        });
+      };
+      if(t.Rank === 'A'){
+        vm.aPlayers.push(t.$id);
+
+        count();
+      }else if(t.Rank === 'B'){
+        vm.bPlayers.push(t.$id);
+        count();
+      }else if(t.Rank === 'C'){
+        vm.cPlayers.push(t.$id);
       }
     }
   }
