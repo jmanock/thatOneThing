@@ -4,7 +4,6 @@
   position:absolute;
   right:0;
   margin-right:2em;
-
 }
 
 .players{
@@ -23,8 +22,11 @@
 
 p{
   font-size:1.5em;
+  line-height:2.0em;
 }
-
+.remove{
+  margin-bottom:.3em;
+}
 a{
   cursor:pointer;
 }
