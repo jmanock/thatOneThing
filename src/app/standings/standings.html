@@ -1,6 +1,5 @@
 <div>
-  <div ng-repeat='(k,v) in standings.users'>
-    {{k}}
-    <div ng-repeat='va in v'>{{va}}</div>
-  </div>
+  <ul>
+    <li ng-repeat='l in standings.leaderboard'>{{l.Name}} | {{l.Points}} | {{l.Total}}</li>
+  </ul>
 </div>
