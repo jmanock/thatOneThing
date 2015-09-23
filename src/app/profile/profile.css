@@ -4,6 +4,7 @@
   position:absolute;
   right:0;
   margin-right:2em;
+  position:fixed;
 }
 
 .players{
