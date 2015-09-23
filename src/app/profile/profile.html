@@ -1,7 +1,6 @@
 <div>
   <div class='team'>
-    <h3>Team</h3>
-    <p ng-repeat='t in profile.team'>{{t.$id}} <button ng-click='profile.remove(t)'>X</button></p>
+    <p ng-repeat='t in profile.team | orderBy:t.Rank'>{{t.Rank}} | {{t.$id}} <button ng-click='profile.remove(t)' class='btn pull-right remove'>X</button></p>
   </div>
 
   <div>
