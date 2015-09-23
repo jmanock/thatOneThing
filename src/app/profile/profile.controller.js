@@ -111,6 +111,17 @@
             userTeam.update({
               Rank:x
             });
+            var index;
+            if(x === 'A'){
+              index = vm.aPlayers.indexOf(p);
+              vm.aPlayers.splice(index,1);
+            }else if(x === 'B'){
+              index = vm.bPlayers.indexOf(p);
+              vm.bPlayers.splice(index,1);
+            }else if(x === 'C'){
+              index = vm.cPlayers.indexOf(p);
+              vm.cPlayers.splice(index,1);
+            }
           }
         });
       };
@@ -133,20 +144,19 @@
           if(err){
             console.log(err);
           }else if(committed){
-
             userTeam.remove();
           }
         });
       };
       if(t.Rank === 'A'){
         vm.aPlayers.push(t.$id);
-
         count();
       }else if(t.Rank === 'B'){
         vm.bPlayers.push(t.$id);
         count();
       }else if(t.Rank === 'C'){
         vm.cPlayers.push(t.$id);
+        count();
       }
     }
   }
