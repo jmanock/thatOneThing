@@ -6,7 +6,7 @@
 
   function StandingsController($scope, FirebaseUrl, $firebaseArray, $firebaseObject){
     var vm = this;
-    var fireRef = new Firebase('https://reditclone.firebaseio.com/userTeam/');
+    var fireRef = new Firebase('https://reditclone.firebaseio.com/leaderboard/');
     // $scope.todos = $firebaseArray(fireRef);
     // $scope.newTodo = '';
     // $scope.addTodo = function(){
@@ -23,15 +23,9 @@
     // $scope.removeTodo = function(todo){
     //   $scope.todos.$remove(todo);
     // };
-
-    vm.teams = $firebaseArray(fireRef);
-    var something = $firebaseObject(fireRef);
-    something.$loaded().then(function(data){
-      data.forEach(function(d){
-        var name = d.name;
-        var kname = $firebaseArray(fireRef+name);
-        console.log(kname);
-      });
-    });
+    vm.leaderboard = $firebaseArray(fireRef);
+    vm.add = function(x){
+      console.log('hello Friend', x);
+    };
   }
 })();

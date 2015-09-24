@@ -99,17 +99,28 @@
         - Save the name to get that out easier
         - Maybe use what the example does
       */
-      // var userTeam = ref.child('userTeam').child(name);
-      // var teamUser = ref.child('userTeam').child(name).child('Team');
-      vm.userTeam = $firebaseArray(ref.child('userTeam').child(name));
-      vm.teamUser = $firebaseArray(ref.child('userTeam').child(name).child('Team'));
-      vm.teamUser.$add({
+      vm.userPlayers = $firebaseArray(ref.child('userPlayers').child(name));
+      vm.playersUser = $firebaseArray(ref.child('playersUser')).child(p);
+      vm.userPlayers.$add({
         Name:p,
         Rank:x
       });
-      vm.userTeam.$add({
-        name:name
+      vm.playersUser.$add({
+        Name:name,
+        Rank:x
       });
+
+      // Have to figure out how to keep the id the same threw to map them to eachother
+
+      // vm.userTeam = $firebaseArray(ref.child('userTeam').child(name));
+      // vm.teamUser = $firebaseArray(ref.child('userTeam').child(name).child('Team'));
+      // vm.teamUser.$add({
+      //   Name:p,
+      //   Rank:x
+      // });
+      // vm.userTeam.$add({
+      //   name:name
+      // });
 
     }
 

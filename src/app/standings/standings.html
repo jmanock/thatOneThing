@@ -19,9 +19,14 @@
       </div>
     </section>
   </section> -->
-  <ul>
+
+  <!-- <ul>
     <div ng-repeat='t in standings.teams'> <strong>{{t.name}}</strong>
     <div ng-repeat='v in t.Team'>{{v.Name}} | {{v.Rank}}</div></div>
 
+  </ul> -->
+
+  <ul>
+    <li ng-repeat='p in standings.leaderboard'>{{p.Name}} <button ng-click='standings.add(p)'>Add button</button></li>
   </ul>
 </div>
