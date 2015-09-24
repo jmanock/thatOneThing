@@ -23,6 +23,15 @@
     // $scope.removeTodo = function(todo){
     //   $scope.todos.$remove(todo);
     // };
-    $scope.teams = $firebaseArray(fireRef);
+
+    vm.teams = $firebaseArray(fireRef);
+    var something = $firebaseObject(fireRef);
+    something.$loaded().then(function(data){
+      data.forEach(function(d){
+        var name = d.name;
+        var kname = $firebaseArray(fireRef+name);
+        console.log(kname);
+      });
+    });
   }
 })();
