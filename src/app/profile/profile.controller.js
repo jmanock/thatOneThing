@@ -100,12 +100,13 @@
         - Maybe use what the example does
       */
       var userTeam = ref.child('userTeam').child(name);
-      var teamUser = ref.child('userTeam').child(name).child('Team');
+      var teamUser = ref.child('userTeam').child(name).child('Team').child(p);
       userTeam.update({
         name:name,
       });
       teamUser.update({
-        name:p
+        name:p,
+        rank:x
       });
 
     }
