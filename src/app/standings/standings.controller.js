@@ -25,24 +25,8 @@
     // };
     init();
     function init(){
-      var ref = new Firebase('https://reditclone.firebaseio.com/');
-      var something = $firebaseArray(ref.child('testTeam'));
-      var somethingElse = $firebaseArray(ref.child('testUserTeam'));
-      somethingElse.$loaded().then(function(ddata){
-        ddata.forEach(function(A){
-          var name = A.Name;
-          var player = A.Player;
-          something.$loaded().then(function(data){
-            data.forEach(function(x){
-              var Id = x.$id;
-              if(name === Id){
-                console.log(name,player);
-              }
-            });
-          });
-        });
-      });
-
+      var ref = new Firebase('https://reditclone.firebaseio.com/testTeam');
+      
     }
     vm.leaderboard = $firebaseArray(fireRef);
     vm.leaderboard.$loaded().then(function(data){
