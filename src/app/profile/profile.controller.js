@@ -99,14 +99,16 @@
         - Save the name to get that out easier
         - Maybe use what the example does
       */
-      var userTeam = ref.child('userTeam').child(name);
-      var teamUser = ref.child('userTeam').child(name).child('Team').child(p);
-      userTeam.update({
-        name:name,
+      // var userTeam = ref.child('userTeam').child(name);
+      // var teamUser = ref.child('userTeam').child(name).child('Team');
+      vm.userTeam = $firebaseArray(ref.child('userTeam').child(name));
+      vm.teamUser = $firebaseArray(ref.child('userTeam').child(name).child('Team'));
+      vm.teamUser.$add({
+        Name:p,
+        Rank:x
       });
-      teamUser.update({
-        name:p,
-        rank:x
+      vm.userTeam.$add({
+        name:name
       });
 
     }
