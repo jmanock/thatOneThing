@@ -93,7 +93,21 @@
     }
 
     function add(p, x){
-      console.log('this should be fun??', p);
+      /* Need to
+        - Count letters
+        - Hava an easy way to get the stupid data out
+        - Save the name to get that out easier
+        - Maybe use what the example does
+      */
+      var userTeam = ref.child('userTeam').child(name);
+      var teamUser = ref.child('userTeam').child(name).child('Team');
+      userTeam.update({
+        name:name,
+      });
+      teamUser.update({
+        name:p
+      });
+
     }
 
     vm.remove = remove;
