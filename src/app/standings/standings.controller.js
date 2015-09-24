@@ -23,9 +23,45 @@
     // $scope.removeTodo = function(todo){
     //   $scope.todos.$remove(todo);
     // };
+    init();
+    function init(){
+      var ref = new Firebase('https://reditclone.firebaseio.com/');
+      var something = $firebaseArray(ref.child('testTeam'));
+      var somethingElse = $firebaseArray(ref.child('testUserTeam'));
+      somethingElse.$loaded().then(function(ddata){
+        ddata.forEach(function(A){
+          var name = A.Name;
+          var player = A.Player;
+          something.$loaded().then(function(data){
+            data.forEach(function(x){
+              var Id = x.$id;
+              if(name === Id){
+                console.log(name,player);
+              }
+            });
+          });
+        });
+      });
+
+    }
     vm.leaderboard = $firebaseArray(fireRef);
+    vm.leaderboard.$loaded().then(function(data){
+      data.forEach(function(x){
+        //console.log(x);
+      });
+    });
     vm.add = function(x){
-      console.log('hello Friend', x);
+      var name = 'jon';
+      var ref = new Firebase('https://reditclone.firebaseio.com/');
+      vm.testTeam = $firebaseArray(ref.child('testTeam').child(name));
+      vm.testUserTeam = $firebaseArray(ref.child('testUserTeam'));
+      vm.testUserTeam.$add({
+        Name:name,
+        Player:x.Name
+      });
+      vm.testTeam.$add({
+        Name:x.Name
+      });
     };
   }
 })();
