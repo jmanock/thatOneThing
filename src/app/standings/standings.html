@@ -1,5 +1,5 @@
 <div>
-  <section class='row'>
+  <!-- <section class='row'>
     <header>
       <h1 class='text-center'>What do you have to do?</h1>
       <form ng-submit='addTodo()'>
@@ -18,5 +18,10 @@
         </div>
       </div>
     </section>
-  </section>
+  </section> -->
+  <ul>
+    <div ng-repeat='t in teams'> <strong>{{t.name}}</strong>
+    <div ng-repeat='v in t.Team'>{{v.Name}} | {{v.Rank}}</div></div>
+
+  </ul>
 </div>
