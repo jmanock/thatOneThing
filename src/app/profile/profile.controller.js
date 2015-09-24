@@ -92,46 +92,8 @@
       add(p,'C');
     }
 
-    function add(p,x){
-      var userTeam = ref.child('userTeam').child(name).child('Team').child(p);
-      var count = function(c){
-        ref.child('userTeam').child(name).child('Count'+x).transaction(function(count){
-          if(count === null){
-            count = 0;
-          }
-          if(count >= c){
-            console.log('That is all the ' + x + ' Players you can have');
-          }else{
-            return(count ||0)+1;
-          }
-        }, function(err, committed){
-          if(err){
-            console.log(err);
-          }else if(committed){
-            userTeam.update({
-              Rank:x
-            });
-            var index;
-            if(x === 'A'){
-              index = vm.aPlayers.indexOf(p);
-              vm.aPlayers.splice(index,1);
-            }else if(x === 'B'){
-              index = vm.bPlayers.indexOf(p);
-              vm.bPlayers.splice(index,1);
-            }else if(x === 'C'){
-              index = vm.cPlayers.indexOf(p);
-              vm.cPlayers.splice(index,1);
-            }
-          }
-        });
-      };
-      if(x === 'A'){
-        count(2);
-      }else if(x === 'B'){
-        count(2);
-      }else if(x === 'C'){
-        count(1);
-      }
+    function add(p, x){
+      console.log('this should be fun??', p);
     }
 
     vm.remove = remove;
