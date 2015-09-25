@@ -26,19 +26,8 @@
     init();
     function init(){
       $scope.teams = $firebaseArray(fireRef);
-      console.log($scope.teams);
-      var something = new Firebase('https://fireseedangular.firebaseio.com/Players');
-      $scope.something = $firebaseArray(something);
-      $scope.something.$loaded(function(x){
-        angular.forEach(x, function(z){
-          var name = z.Name;
-          var points = z.Total;
-
-        });
-      });
+    
     }
-    vm.add = function(x){
 
-    };
   }
 })();

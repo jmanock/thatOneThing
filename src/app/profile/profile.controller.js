@@ -15,8 +15,9 @@
       user.$loaded().then(function(){
         name = user.fullName;
         var team = $firebaseArray(ref.child('userTeam').child(name).child('Team'));
-        console.log(team);
+
         team.$loaded().then(function(data){
+
           angular.forEach(data, function(x){
             var index;
             if(x.Rank === 'A'){
@@ -95,6 +96,7 @@
 
     function add(p, x){
       var userTeam = ref.child('userTeam').child(name).child('Team').child(p);
+      var kname = ref.child('userTeam').child(name);
       var count = function(c){
         ref.child('userTeam').child(name).child(x+'Count').transaction(function(count){
           if(count === null){
@@ -109,6 +111,9 @@
           if(err){
             console.log(err);
           }else if(committed){
+            kname.update({
+              name:name
+            });
             userTeam.update({
               Rank:x,
               Name:p
