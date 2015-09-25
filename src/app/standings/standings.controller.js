@@ -25,19 +25,23 @@
     // };
     init();
     function init(){
-      var ref = new Firebase('https://reditclone.firebaseio.com/testTeam');
+      var ref = new Firebase('https://reditclone.firebaseio.com/toDo');
+      var something = $firebaseArray(ref);
+      something.$loaded().then(function(data){
+        data.forEach(function(x){
+          console.log(x.title);
+        });
+      });
 
     }
     vm.leaderboard = $firebaseArray(fireRef);
-    vm.leaderboard.$loaded().then(function(data){
-      data.forEach(function(x){
-        //console.log(x);
-      });
-    });
+
+
     vm.add = function(x){
       var name = 'jon';
-      var ref = new Firebase('https://reditclone.firebaseio.com/');
-      
+
+
+
     };
   }
 })();
