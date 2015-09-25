@@ -26,7 +26,7 @@
     init();
     function init(){
       var ref = new Firebase('https://reditclone.firebaseio.com/testTeam');
-      
+
     }
     vm.leaderboard = $firebaseArray(fireRef);
     vm.leaderboard.$loaded().then(function(data){
@@ -37,15 +37,7 @@
     vm.add = function(x){
       var name = 'jon';
       var ref = new Firebase('https://reditclone.firebaseio.com/');
-      vm.testTeam = $firebaseArray(ref.child('testTeam').child(name));
-      vm.testUserTeam = $firebaseArray(ref.child('testUserTeam'));
-      vm.testUserTeam.$add({
-        Name:name,
-        Player:x.Name
-      });
-      vm.testTeam.$add({
-        Name:x.Name
-      });
+      
     };
   }
 })();
