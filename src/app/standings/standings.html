@@ -27,6 +27,10 @@
   </ul> -->
 
   <ul>
-    <li ng-repeat='p in standings.leaderboard'>{{p.Name}} <button ng-click='standings.add(p)'>Add button</button></li>
-  </ul>
+  <h3>Teams</h3>
+  <div ng-repeat='(k,v) in teams'>
+    <!-- <h4>{{team.$id}} | {{total(team)}}</h4> -->
+    <h4>{{v}}</h4>
+    <div ng-repeat='value in v.Team'>{{value.Rank}} </div>
+  </div>
 </div>

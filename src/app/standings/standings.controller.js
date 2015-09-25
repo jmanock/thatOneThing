@@ -6,7 +6,7 @@
 
   function StandingsController($scope, FirebaseUrl, $firebaseArray, $firebaseObject){
     var vm = this;
-    var fireRef = new Firebase('https://reditclone.firebaseio.com/leaderboard/');
+    var fireRef = new Firebase('https://reditclone.firebaseio.com/userTeam/');
     // $scope.todos = $firebaseArray(fireRef);
     // $scope.newTodo = '';
     // $scope.addTodo = function(){
@@ -25,22 +25,19 @@
     // };
     init();
     function init(){
-      var ref = new Firebase('https://reditclone.firebaseio.com/toDo');
-      var something = $firebaseArray(ref);
-      something.$loaded().then(function(data){
-        data.forEach(function(x){
-          console.log(x.title);
+      $scope.teams = $firebaseArray(fireRef);
+      console.log($scope.teams);
+      var something = new Firebase('https://fireseedangular.firebaseio.com/Players');
+      $scope.something = $firebaseArray(something);
+      $scope.something.$loaded(function(x){
+        angular.forEach(x, function(z){
+          var name = z.Name;
+          var points = z.Total;
+
         });
       });
-
     }
-    vm.leaderboard = $firebaseArray(fireRef);
-
-
     vm.add = function(x){
-      var name = 'jon';
-
-
 
     };
   }

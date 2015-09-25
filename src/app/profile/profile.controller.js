@@ -15,6 +15,7 @@
       user.$loaded().then(function(){
         name = user.fullName;
         var team = $firebaseArray(ref.child('userTeam').child(name).child('Team'));
+        console.log(team);
         team.$loaded().then(function(data){
           angular.forEach(data, function(x){
             var index;
@@ -109,7 +110,8 @@
             console.log(err);
           }else if(committed){
             userTeam.update({
-              Rank:x
+              Rank:x,
+              Name:p
             });
             var index;
             if(x === 'A'){
