@@ -93,35 +93,45 @@
     }
 
     function add(p, x){
-      /* Need to
-        - Count letters
-        - Hava an easy way to get the stupid data out
-        - Save the name to get that out easier
-        - Maybe use what the example does
-      */
-      vm.userPlayers = $firebaseArray(ref.child('userPlayers').child(name));
-      vm.playersUser = $firebaseArray(ref.child('playersUser')).child(p);
-      vm.userPlayers.$add({
-        Name:p,
-        Rank:x
-      });
-      vm.playersUser.$add({
-        Name:name,
-        Rank:x
-      });
-
-      // Have to figure out how to keep the id the same threw to map them to eachother
-
-      // vm.userTeam = $firebaseArray(ref.child('userTeam').child(name));
-      // vm.teamUser = $firebaseArray(ref.child('userTeam').child(name).child('Team'));
-      // vm.teamUser.$add({
-      //   Name:p,
-      //   Rank:x
-      // });
-      // vm.userTeam.$add({
-      //   name:name
-      // });
-
+      var userTeam = ref.child('userTeam').child(name).child('Team').child(p);
+      var count = function(c){
+        ref.child('userTeam').child(name).child(x+'Count').transaction(function(count){
+          if(count === null){
+            count = 0;
+          }
+          if(count >= c){
+            console.log('That is all the '+x+' players you can have');
+          }else{
+            return(count ||0)+1;
+          }
+        }, function(err, committed){
+          if(err){
+            console.log(err);
+          }else if(committed){
+            userTeam.update({
+              Rank:x
+            });
+            var index;
+            if(x === 'A'){
+              index = vm.aPlayers.indexOf(p);
+              vm.aPlayers.splice(index,1);
+            }else if(x === 'B'){
+              index = vm.bPlayers.indexOf(p);
+              vm.bPlayers.splice(index,1);
+            }else if(x === 'C'){
+              index = vm.cPlayers.indexOf(p);
+              vm.cPlayers.splice(index,1);
+            }
+          }
+        });
+      };
+      if(x === 'A'){
+        count(2);
+      }else if(x === 'B'){
+        count(2);
+      }else if(x === 'C'){
+        count(1);
+      }
     }
 
     vm.remove = remove;
