@@ -2,8 +2,14 @@
   'use strict';
   angular
   .module('thatOneThing')
+  .filter('something', something)
   .controller('StandingsController', StandingsController);
 
+  function something(){
+    return function(input){
+      console.log(input);
+    };
+  }
   function StandingsController($scope, FirebaseUrl, $firebaseArray, $firebaseObject){
     var vm = this;
     var fireRef = new Firebase('https://reditclone.firebaseio.com/userTeam/');
@@ -26,7 +32,7 @@
     init();
     function init(){
       $scope.teams = $firebaseArray(fireRef);
-    
+
     }
 
   }
