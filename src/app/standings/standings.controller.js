@@ -25,11 +25,11 @@
               });
             }
           });
-          return knew;
+          
         });
-        return knew;
+
       });
-      return knew;
+
     };
   }
   function StandingsController($scope, FirebaseUrl, $firebaseArray, $firebaseObject){
