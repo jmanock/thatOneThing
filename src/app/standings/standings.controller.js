@@ -5,9 +5,31 @@
   .filter('something', something)
   .controller('StandingsController', StandingsController);
 
-  function something(){
+  function something($firebaseArray){
     return function(input){
-      console.log(input);
+      var ssomething = [];
+      var knew = [];
+      angular.forEach(input, function(x){
+        ssomething.push(x.Name);
+      });
+      var ref = new Firebase('https://reditclone.firebaseio.com/leaderboard');
+      var fRef = $firebaseArray(ref);
+      fRef.$loaded().then(function(data){
+        data.forEach(function(a){
+          var kname = a.Name;
+          ssomething.forEach(function(b){
+            if(b === kname){
+              knew.push({
+                Name:b,
+                Points:a.Total
+              });
+            }
+          });
+          return knew;
+        });
+        return knew;
+      });
+      return knew;
     };
   }
   function StandingsController($scope, FirebaseUrl, $firebaseArray, $firebaseObject){
