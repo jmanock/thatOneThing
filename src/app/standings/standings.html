@@ -1,0 +1,11 @@
+<div>
+  <ul>
+  <h3>Teams</h3>
+  <div ng-repeat='(k,v) in standings.teams'>
+    <!-- <h4>{{team.$id}} | {{total(team)}}</h4> -->
+    <h4>{{v.name}} | {{standings.getTotalPoints(v)}}</h4>
+    <div ng-repeat='value in v.Team '>{{value.Name}} | {{standings.getPlayerPoints(value.Name)}} </div>
+  </div>
+  <h3>Leaderboard</h3>
+  <h5 ng-repeat='l in standings.leaderboard'>{{l.Name}} | {{l.Total}}</h5>
+</div>
