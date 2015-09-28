@@ -30,7 +30,7 @@
   <h3>Teams</h3>
   <div ng-repeat='(k,v) in teams'>
     <!-- <h4>{{team.$id}} | {{total(team)}}</h4> -->
-    <h4>{{v.name}}</h4>
-    <div ng-repeat='value in v.Team | something:query'>{{value.Name }} </div>
+    <h4>{{v.name}} | {{getStuff(v)}}</h4>
+    <div ng-repeat='value in v.Team '>{{value.Name }} </div>
   </div>
 </div>
