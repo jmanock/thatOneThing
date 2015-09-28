@@ -37,7 +37,7 @@
         });
       });
     }
-    $scope.getStuff = function(x){
+    $scope.getTotalPoints = function(x){
       var total = 0;
       var team = x.Team;
       angular.forEach(team, function(z){
@@ -48,6 +48,16 @@
           }
         });
 
+      });
+      return total;
+    };
+
+    $scope.getPlayerPoints = function(x){
+      var total = 0;
+      angular.forEach(players, function(a){
+        if(a.Name === x){
+          total = a.Total;
+        }
       });
       return total;
     };
