@@ -33,4 +33,6 @@
     <h4>{{v.name}} | {{getTotalPoints(v)}}</h4>
     <div ng-repeat='value in v.Team '>{{value.Name}} | {{getPlayerPoints(value.Name)}} </div>
   </div>
+  <h3>Leaderboard</h3>
+  <h5 ng-repeat='l in leaderboard'>{{l.Name}} | {{l.Total}}</h5>
 </div>

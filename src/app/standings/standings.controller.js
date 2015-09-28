@@ -36,6 +36,7 @@
           players.push(x);
         });
       });
+      $scope.leaderboard = something;
     }
     $scope.getTotalPoints = function(x){
       var total = 0;
