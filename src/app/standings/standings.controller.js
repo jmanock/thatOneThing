@@ -24,17 +24,32 @@
     // $scope.removeTodo = function(todo){
     //   $scope.todos.$remove(todo);
     // };
+    var players = [];
     init();
     function init(){
-      $scope.teams = $firebaseArray(fireRef);
 
+      $scope.teams = $firebaseArray(fireRef);
+      var ref = new Firebase('https://reditclone.firebaseio.com/leaderboard/');
+      var something = $firebaseArray(ref);
+      something.$loaded().then(function(data){
+        angular.forEach(data, function(x){
+          players.push(x);
+        });
+      });
     }
     $scope.getStuff = function(x){
+      var total = 0;
       var team = x.Team;
       angular.forEach(team, function(z){
         var name = z.Name;
-        console.log(name);
+        angular.forEach(players, function(a){
+          if(a.Name === name){
+            total += a.Total;
+          }
+        });
+
       });
+      return total;
     };
   }
 })();
